@@ -41,6 +41,13 @@ for c = 1 : Par.n_cls
     Xn{c} = XN(:, idx);
     Xc{c} = XC(:, idx);
 end
+c = Par.n_cls+1;
+Par.n_cls = c;
+model.R = []; % R is now useless
+model.means(:, c) = mean(XC0, 2);
+model.covs(:, :, c) = cov(XC0');
+model.mixweights = [model.mixweights size(XC0,2)/(size(XC0,2) + length(cls_idx))]/(sum(model.mixweights) + size(XC0,2)/(size(XC0,2) + length(cls_idx)));
+model.nmodels = model.nmodels + 1;
 Xn{Par.n_cls+1} = XN0;
 Xc{Par.n_cls+1} = XC0;
 
