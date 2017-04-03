@@ -40,5 +40,5 @@ N0 = N(smooth);
 C0 = C(smooth);
 
 
-fprintf('We have sampled %d patches.\r\n', min(n_patch, Tn_patch));
+fprintf('We have sampled %d patches.\r\n', length(p));
 end
