@@ -41,6 +41,10 @@ for c = 1 : Par.n_cls
     Xn{c} = XN(:, idx);
     Xc{c} = XC(:, idx);
 end
-clear XN XC;
+Xn{Par.n_cls+1} = XN0;
+Xc{Par.n_cls+1} = XC0;
+
+
+clear XN XC XN0 XC0;
 GMM_model = ['GMM_' num2str(Par.ps2ch) '_' num2str(Par.n_patch) '_' num2str(Par.n_cls) '_' IMname '_' datestr(now, 30) '.mat'];
 save(GMM_model, 'model', 'Xn','Xc','Par');
